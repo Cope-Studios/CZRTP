@@ -1,0 +1,36 @@
+# =============================================================================
+#  CZRTP - plugin.yml
+#  ${project.version} is filled in by Maven when you build.
+# =============================================================================
+
+name: CZRTP
+version: '${project.version}'
+main: us.copestudios.czrtp.CZRTP
+# Works on 1.20.1 and every newer version.
+api-version: '1.20'
+author: Z3R0 / Cope Studios
+website: https://copestudios.us
+description: Cope Zone Random Teleport - random teleport inside zones you draw.
+
+# CopeCore provides colors, messages, commands, regions and cooldowns. It must load first.
+depend: [CopeCore]
+softdepend: [PlaceholderAPI]
+
+commands:
+  czrtp:
+    description: Random teleport inside a zone, and zone setup.
+    usage: /czrtp help
+
+permissions:
+  czrtp.use:
+    description: /czrtp tp <zone> and /czrtp cancel (each zone also needs czrtp.<zone>, czrtp.* or czrtp.admin).
+    default: op
+  czrtp.admin:
+    description: Create/delete zones, change options, reload, teleport other players, every zone.
+    default: op
+    children:
+      czrtp.use: true
+      czrtp.bypass.cooldown: true
+  czrtp.bypass.cooldown:
+    description: Never waits for a zone cooldown.
+    default: false

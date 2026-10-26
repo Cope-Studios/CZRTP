@@ -1,0 +1,16 @@
+# =============================================================================
+#  CZRTP - the DEFAULT texts of CZRTP 1.x (config_zone.yml). Only used once, when
+#  upgrading: an old text is copied to messages.yml / config.yml only if it is
+#  different from these (so you customized it). This file stays inside the jar.
+# =============================================================================
+message:
+  - "&aTeleporting to zone &6{zone_name}&a in &6{delay}&a seconds..."
+  - "{prefix} &aTeleporting to zone &6{zone_name}&a in &6{delay}&a seconds..."
+cooldown_message:
+  - "&cYou must wait &6{cooldown}&c seconds before using this zone again."
+  - "{prefix} &cYou must wait &6{cooldown}&c seconds before using this zone again."
+success_message:
+  - "&aYou have been teleported to zone &6{zone_name}&a!"
+  - "{prefix} &aYou have been teleported to zone &6{zone_name}&a!"
+prefix:
+  - "[&x&0&0&0&0&0&0&l&oC&x&2&e&2&e&2&e&l&oZ&x&5&c&5&c&5&c&l&oR&x&8&9&8&9&8&9&l&oT&x&b&7&b&7&b&7&l&oP]"

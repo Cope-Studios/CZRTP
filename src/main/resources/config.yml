@@ -1,0 +1,48 @@
+# =============================================================================
+#  CZRTP - config.yml (settings)
+#  /czrtp reload after editing. Most of this can also be set in game:
+#    /czrtp options <zone|global> <option> <value>
+#
+#  Every text is in messages.yml. Zones themselves (their corners) are in
+#  zones.yml (CopeCore regions) - make them with /czrtp create <name>.
+#
+#  New settings from updates are added to this file automatically, and a broken
+#  file is repaired (the old one is kept as config.yml.broken-<date>).
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+#  Defaults for every zone (a zone can override any of these below, in "zones:")
+# -----------------------------------------------------------------------------
+settings:
+  # Seconds between /czrtp tp and the teleport. 0 = instant.
+  teleport-delay: 3
+  # Seconds before the same player can use the same zone again.
+  cooldown: 60
+  # Cancel the teleport if the player walks away during the delay.
+  cancel-on-move: false
+  # Players with one of these shared CopeCore states can't start a teleport
+  # (other Cope plugins set them: combat = CSCombat, in-duel / in-arena = CSSPVP,
+  # boss-fight = Cope Bosses). [] = nobody is blocked.
+  blocked-states:
+    - combat
+    - in-duel
+    - in-arena
+  # How many random spots are tried before giving up on finding safe ground.
+  search-attempts: 50
+
+# -----------------------------------------------------------------------------
+#  Per-zone overrides. Anything left out uses the defaults above / messages.yml.
+#  Example:
+#
+#  zones:
+#    spawn_area:
+#      teleport-delay: 5
+#      cooldown: 120
+#      # Prefix used in this zone's messages (<prefix>). "" = none.
+#      prefix: "<aqua>[Spawn] "
+#      messages:
+#        start: "<prefix><green>Preparing to teleport to <aqua><zone></aqua> in <aqua><delay></aqua> seconds..."
+#        cooldown: "<prefix><red>This zone is on a <gold><cooldown></gold> second cooldown!"
+#        success: "<prefix><aqua>Welcome to <dark_aqua><zone></dark_aqua>!"
+# -----------------------------------------------------------------------------
+zones: {}

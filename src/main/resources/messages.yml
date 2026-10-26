@@ -1,0 +1,110 @@
+# =============================================================================
+#  CZRTP - messages.yml
+#  Every text the plugin shows. /czrtp reload after editing.
+# =============================================================================
+#
+#  FORMATTING (handled by CopeCore - all of these work, even mixed):
+#    MiniMessage:  <gold>  <bold>  <#FFC857>  <gradient:#000000:#B7B7B7>text</gradient>
+#                  <hover:show_text:'tooltip'>  <click:run_command:'/czrtp tp spawn'>
+#    Old codes:    &a  &l  &#FFC857  &x&R&R&G&G&B&B   (your old CZRTP texts keep working)
+#
+#  PLACEHOLDERS are written <name>, {name} or %name% (all three work).
+#  The old {zone_name} also works in the teleport messages.
+#
+#  Set a message to "" to turn it off. Zones can have their own teleport
+#  messages and prefix (config.yml "zones:" or /czrtp options).
+#  If you upgraded from CZRTP 1.x, your customized texts were copied in here.
+# =============================================================================
+
+# Shown before command replies, and as <prefix> in the teleport messages.
+prefix: "<dark_gray>[<gradient:#000000:#B7B7B7><bold><italic>CZRTP</italic></bold></gradient><dark_gray>]</dark_gray> "
+
+# -----------------------------------------------------------------------------
+#  Overrides of CopeCore's shared texts
+# -----------------------------------------------------------------------------
+generic:
+  help-header: "<gold>===== <yellow>CZRTP Commands</yellow> ====="
+  # <command> <usage> <description>. Click a line to type the command.
+  help-line: "<click:suggest_command:'/<command> '><hover:show_text:'<gray>Click to type <yellow>/<command>'><yellow>/<command> <usage></yellow> <gray>- <description></hover></click>"
+  help-footer: ""
+
+command:
+  help:
+    tp: "teleport to a random spot in a zone (add a player to send them)"
+    cancel: "cancel your pending teleport"
+    create: "start a new zone (or make it from your CopeCore wand selection)"
+    corner: "set a corner of a zone where you stand"
+    delete: "delete a zone"
+    list: "list zones"
+    options: "change delay, cooldown, messages or prefix"
+    reload: "reload config.yml, messages.yml and zones.yml"
+
+# -----------------------------------------------------------------------------
+#  Teleporting. These are sent WITHOUT the automatic prefix: put <prefix> where
+#  you want it. Placeholders: <zone> <delay> <cooldown> <prefix> <player>
+# -----------------------------------------------------------------------------
+teleport:
+  start: "<prefix><green>Teleporting to zone <gold><zone></gold> in <gold><delay></gold> seconds..."
+  cooldown: "<prefix><red>You must wait <gold><cooldown></gold> seconds before using this zone again."
+  success: "<prefix><green>You have been teleported to zone <gold><zone></gold>!"
+  # The replies below DO get the prefix automatically.
+  # <zone>
+  unknown-zone: "<red>Zone '<zone>' doesn't exist."
+  # <zone>
+  no-permission: "<red>You don't have permission to teleport to zone '<zone>'."
+  already-pending: "<red>You are already being teleported."
+  # <zone>
+  no-safe-spot: "<red>Couldn't find a safe location in zone '<zone>'."
+  # <zone>
+  world-missing: "<red>The world of zone '<zone>' isn't loaded."
+  cancelled: "<green>Teleport cancelled."
+  nothing-to-cancel: "<red>You don't have any pending teleports."
+  moved: "<red>Teleport cancelled because you moved."
+  # <state> = combat, in-duel...
+  blocked-state: "<red>You can't teleport right now (<state>)."
+  # <player> <zone>
+  sent-other: "<green>Teleporting <player> to zone '<zone>'."
+
+# -----------------------------------------------------------------------------
+#  Zone setup
+# -----------------------------------------------------------------------------
+zone:
+  invalid-name: "<red>Zone names may use letters, numbers, - and _ (max 32), and can't be a sub command."
+  # <zone>
+  exists: "<red>A zone with that name already exists!"
+  # <zone>
+  started: "<green>Zone creation started for '<zone>'. Stand at one corner and use <yellow>/czrtp <zone> pos1</yellow>, then the opposite corner with <yellow>pos2</yellow>."
+  # <zone>
+  created-from-wand: "<green>Zone '<zone>' was created from your wand selection and saved!"
+  # <corner> <zone>
+  corner-set: "<green>Position <corner> set for zone '<zone>'."
+  # <zone>
+  created: "<green>Zone '<zone>' has been created and saved successfully!"
+  # <zone> (setting a corner of a zone that already exists moves that corner)
+  updated: "<green>Zone '<zone>' was updated."
+  only-two-corners: "<gray>Zones only need two opposite corners now: <yellow>pos1</yellow> and <yellow>pos2</yellow>."
+  # <zone>
+  not-started: "<red>You need to start zone creation with <yellow>/czrtp create <zone></yellow> first!"
+  # <world>
+  same-world: "<red>Both corners must be in the same world (<world>)."
+  # <zone>
+  deleted: "<green>Zone '<zone>' deleted."
+  list-header: "<gold>Zones (<count>):"
+  # <zone> <world> <x> <z>
+  list-line: "<click:suggest_command:'/czrtp tp <zone>'><hover:show_text:'<gray>Click to type /czrtp tp <zone>'><yellow> - <zone></yellow> <gray>in <world>, <x> × <z> blocks</hover></click>"
+  none: "<gray>No zones yet. Make one with <yellow>/czrtp create \\<name></yellow>."
+
+# -----------------------------------------------------------------------------
+#  /czrtp options <zone|global> <option> <value>
+#  <option> <target> <value>   (<target> = "global default" or "zone 'name'")
+# -----------------------------------------------------------------------------
+options:
+  set: "<green>Set <option> for <target> to: <reset><value>"
+  global-target: "global default"
+  # <zone>
+  zone-target: "zone '<zone>'"
+  # <option>
+  unknown: "<red>Unknown option: <option>"
+  available: "<gray>Available options: delay, cooldown, message, cooldown-message, success-message, prefix-enabled, prefix-text"
+  bad-number: "<red>The value must be a whole number of 0 or more."
+  bad-bool: "<red>Value must be 'true' or 'false'"
